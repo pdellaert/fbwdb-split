@@ -1,7 +1,7 @@
 import { AuditLogEvent, bold, Colors, TextChannel, User } from 'discord.js';
-import { Channels, ModLogsExclude } from '../constants';
-import { makeEmbed, makeLines } from '../lib/embed';
-import Logger from '../lib/logger';
+import { Channels, ModLogsExclude } from '../../constants';
+import { makeEmbed, makeLines } from '../../lib/embed';
+import Logger from '../../lib/logger';
 
 const MAX_RETRIES = 5;
 const SLEEP_TIMER = 0.5 * 1000;

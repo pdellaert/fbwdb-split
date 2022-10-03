@@ -3,12 +3,12 @@ import { Client, Partials } from 'discord.js';
 import express from 'express';
 import { readdirSync } from 'fs';
 import { join } from 'path';
-import Logger from './lib/logger';
-import { connect } from './lib/db';
+import Logger from '../lib/logger';
+import { connect } from '../lib/db';
 
 dotenv.config();
 require('elastic-apm-node').start({
-    serviceName: 'discord-bot',
+    serviceName: 'discord-userbot',
     disableSend: true,
 });
 

@@ -1,9 +1,9 @@
 import { Client, Colors, Guild, TextChannel } from 'discord.js';
-import { makeEmbed } from '../lib/embed';
-import Logger from '../lib/logger';
-import { GuildID, Channels, Threads } from '../constants';
-import { getConn } from '../lib/db';
-import Birthday from '../lib/schemas/birthdaySchema';
+import { makeEmbed } from '../../lib/embed';
+import Logger from '../../lib/logger';
+import { GuildID, Channels, Threads } from '../../constants';
+import { getConn } from '../../lib/db';
+import Birthday from '../../lib/schemas/birthdaySchema';
 
 let birthdayInterval;
 

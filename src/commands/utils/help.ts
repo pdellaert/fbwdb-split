@@ -1,7 +1,7 @@
 import { DMChannel, EmbedField, User } from 'discord.js';
 import { CommandDefinition } from '../../lib/command';
 import { makeEmbed, makeLines } from '../../lib/embed';
-import commands from '../index';
+import userCommands from '../userCommands';
 import { CommandCategory } from '../../constants';
 import Logger from '../../lib/logger';
 
@@ -146,7 +146,7 @@ async function handleDmCommunication(dmChannel: DMChannel, author: User, index: 
 }
 
 function renderAllCategories(): EmbedField[] {
-    let commandArray = Object.values(commands);
+    let commandArray = Object.values(userCommands);
 
     // Remove duplicates by name
     commandArray = commandArray.filter((v, i, a) => a.findIndex((t) => t.name === v.name) === i);

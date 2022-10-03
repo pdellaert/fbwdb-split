@@ -1,7 +1,7 @@
 import { codeBlock, Colors, DMChannel, TextChannel } from 'discord.js';
-import { makeEmbed, makeLines } from '../lib/embed';
-import Logger from '../lib/logger';
-import { Roles, Channels } from '../constants';
+import { makeEmbed, makeLines } from '../../lib/embed';
+import Logger from '../../lib/logger';
+import { Roles, Channels } from '../../constants';
 
 const excludedRoles = [
     Roles.ADMIN_TEAM,
