@@ -1,8 +1,8 @@
 import apm from 'elastic-apm-node';
 import { ChannelType, Colors } from 'discord.js';
-import Logger from '../lib/logger';
-import commands from '../commands';
-import { makeEmbed } from '../lib/embed';
+import Logger from '../../lib/logger';
+import userCommands from '../../commands/userCommands';
+import { makeEmbed } from '../../lib/embed';
 import { client, DEBUG_MODE } from '../index';
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
             const usedCommand = msg.content.substring(1, msg.content.includes(' ') ? msg.content.indexOf(' ') : msg.content.length).toLowerCase();
             Logger.info(`Running command '${usedCommand}'`);
 
-            const command = commands[usedCommand];
+            const command = userCommands[usedCommand];
 
             if (command) {
                 const { executor, name, requiredPermissions } = command;

@@ -4,7 +4,9 @@
   "scripts": {
     "build:typescript": "tsc",
     "run:node": "node build/index.js",
-    "dev": "nodemon --watch src/ -e ts --exec ts-node src/index.ts",
+    "dev:user": "nodemon --watch src/ -e ts --exec ts-node src/userbot/index.ts",
+    "dev:sticky": "nodemon --watch src/ -e ts --exec ts-node src/stickybot/index.ts",
+    "dev:mod": "nodemon --watch src/ -e ts --exec ts-node src/modbot/index.ts",
     "run": "npm run build:typescript && npm run run:node",
     "lint": "eslint src/**/**/*.ts",
     "lint-fix": "eslint src/**/**/*.ts --fix"

@@ -1,7 +1,7 @@
 import { Colors, AuditLogEvent, TextChannel } from 'discord.js';
 import moment from 'moment';
-import { Channels, UserLogExclude } from '../constants';
-import { makeEmbed } from '../lib/embed';
+import { Channels, UserLogExclude } from '../../constants';
+import { makeEmbed } from '../../lib/embed';
 
 const FEATURE_NOT_AVAIL = '(can\'t show embeds or images)';
 

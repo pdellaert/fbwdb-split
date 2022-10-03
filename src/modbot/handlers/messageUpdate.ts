@@ -1,6 +1,6 @@
 import { Colors, TextChannel } from 'discord.js';
-import { Channels, UserLogExclude } from '../constants';
-import { makeEmbed } from '../lib/embed';
+import { Channels, UserLogExclude } from '../../constants';
+import { makeEmbed } from '../../lib/embed';
 
 const FEATURE_NOT_AVAIL = '(can\'t show embeds or images)';
 

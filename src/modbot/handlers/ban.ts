@@ -1,6 +1,6 @@
 import { AuditLogEvent, bold, Colors, TextChannel } from 'discord.js';
-import { Channels, ModLogsExclude } from '../constants';
-import { makeEmbed, makeLines } from '../lib/embed';
+import { Channels, ModLogsExclude } from '../../constants';
+import { makeEmbed, makeLines } from '../../lib/embed';
 
 module.exports = {
     event: 'guildBanAdd',
