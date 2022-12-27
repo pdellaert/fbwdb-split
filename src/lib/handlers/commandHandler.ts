@@ -2,6 +2,8 @@ import apm from 'elastic-apm-node';
 import { ChannelType, Colors } from 'discord.js';
 import Logger from '../logger';
 import { makeEmbed } from '../embed';
+import { CommandDefinition, isExecutorCommand, isMessageCommand } from '../command';
+import { typeCommand } from '../typeCommand';
 
 export const commandHandler = async (msg, supportedCommands, client, DEBUG_MODE) => {
     const isDm = msg.channel.isDMBased();
@@ -29,31 +31,36 @@ export const commandHandler = async (msg, supportedCommands, client, DEBUG_MODE)
         const command = supportedCommands[usedCommand];
 
         if (command) {
-            const { executor, name, requiredPermissions } = command;
-
+            const { name, requiredPermissions } = command;
             const commandsArray = Array.isArray(name) ? name : [name];
-
             const member = await msg.guild.members.fetch(msg.author);
 
             if (!requiredPermissions || requiredPermissions.every((permission) => member.permissions.has(permission))) {
                 if (commandsArray.includes(usedCommand)) {
-                    try {
-                        await executor(msg, client);
-                        transaction.result = 'success';
-                    } catch ({ name, message, stack }) {
-                        Logger.error({ name, message, stack });
-                        const errorEmbed = makeEmbed({
-                            color: Colors.Red,
-                            title: 'Error while Executing Command',
-                            description: DEBUG_MODE ? `\`\`\`D\n${stack}\`\`\`` : `\`\`\`\n${name}: ${message}\n\`\`\``,
-                        });
-
-                        await msg.channel.send({ embeds: [errorEmbed] });
-
-                        transaction.result = 'error';
+                    let executor;
+                    if (isExecutorCommand(command)) {
+                        ({ executor } = (command as CommandDefinition));
+                    } else if (isMessageCommand(command)) {
+                        executor = typeCommand.executor;
                     }
+                    if (executor) {
+                        try {
+                            await executor(msg, client);
+                            transaction.result = 'success';
+                        } catch ({ name, message, stack }) {
+                            Logger.error({ name, message, stack });
+                            const errorEmbed = makeEmbed({
+                                color: Colors.Red,
+                                title: 'Error while Executing Command',
+                                description: DEBUG_MODE ? `\`\`\`D\n${stack}\`\`\`` : `\`\`\`\n${name}: ${message}\n\`\`\``,
+                            });
 
-                    Logger.debug('Command executor done.');
+                            await msg.channel.send({ embeds: [errorEmbed] });
+
+                            transaction.result = 'error';
+                        }
+                        Logger.debug('Command executor done.');
+                    }
                 }
             } else {
                 await msg.reply(`you do not have sufficient permissions to use this command. (missing: ${requiredPermissions.join(', ')})`);
