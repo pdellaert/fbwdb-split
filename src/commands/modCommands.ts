@@ -2,6 +2,7 @@ import { CommandDefinition } from '../lib/command';
 import Logger from '../lib/logger';
 import { ban } from './moderation/ban';
 import { deleteWarn } from './moderation/warn/deleteWarn';
+import { faq } from './moderation/faq';
 import { listWarnings } from './moderation/warn/listWarnings';
 import { roleassignment } from './moderation/roleassignment';
 import { rules } from './moderation/rules';
@@ -17,6 +18,7 @@ import { whois } from './moderation/whois';
 const commands: CommandDefinition[] = [
     ban,
     deleteWarn,
+    faq,
     listWarnings,
     roleassignment,
     rules,
