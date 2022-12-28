@@ -1,7 +1,7 @@
-import { getConn } from '../lib/db';
-import Logger from '../lib/logger';
-import StickyMessage from '../lib/schemas/stickyMessageSchema';
-import { stickyMessageEmbed } from '../lib/stickyMessageEmbed';
+import { getConn } from '../../lib/db';
+import Logger from '../../lib/logger';
+import StickyMessage from '../../lib/schemas/stickyMessageSchema';
+import { stickyMessageEmbed } from '../../lib/stickyMessageEmbed';
 
 const MAX_RETRIES = 5;
 const SLEEP_TIMER = 0.5 * 1000;

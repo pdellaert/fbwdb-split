@@ -1,4 +1,4 @@
-import { CommandDefinition } from '../lib/command';
+import { BaseCommandDefinition } from '../lib/command';
 import Logger from '../lib/logger';
 import { ban } from './moderation/ban';
 import { deleteWarn } from './moderation/warn/deleteWarn';
@@ -15,7 +15,7 @@ import { warn } from './moderation/warn/warn';
 import { welcome } from './moderation/welcome';
 import { whois } from './moderation/whois';
 
-const commands: CommandDefinition[] = [
+const commands: BaseCommandDefinition[] = [
     ban,
     deleteWarn,
     faq,
@@ -32,7 +32,7 @@ const commands: CommandDefinition[] = [
     whois,
 ];
 
-const modCommands: { [k: string]: CommandDefinition } = {};
+const modCommands: { [k: string]: BaseCommandDefinition } = {};
 
 for (const def of commands) {
     for (const name of (typeof def.name === 'string' ? [def.name] : def.name)) {

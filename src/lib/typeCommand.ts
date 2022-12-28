@@ -1,7 +1,8 @@
 import { EmbedData } from 'discord.js';
 import { CommandDefinition, isMessageCommand, MessageCommandDefinition } from './command';
 import { AircraftTypeList, CommandCategory } from '../constants';
-import commands from '../commands/index';
+import userCommands from '../commands/userCommands';
+import modCommands from '../commands/modCommands';
 import Logger from './logger';
 import { makeEmbed, makeLines } from './embed';
 
@@ -15,6 +16,8 @@ export const typeCommand: CommandDefinition = {
     description: 'Shows the command details for the specified supported aircraft type',
     category: CommandCategory.UTILS,
     executor: async (msg) => {
+        // Must be in the executor otherwise userCommands is considered empty (userCommands loads this command itself).
+        const commands = { ...userCommands, ...modCommands };
         const { author } = msg;
         const [dotEvokedCommand] = msg.content.trim().split(/\s+/);
         const evokedCommand = dotEvokedCommand.substring(1);

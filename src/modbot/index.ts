@@ -8,7 +8,7 @@ import { connect } from '../lib/db';
 
 dotenv.config();
 require('elastic-apm-node').start({
-    serviceName: 'discord-bot',
+    serviceName: 'discord-modbot',
     disableSend: true,
 });
 
